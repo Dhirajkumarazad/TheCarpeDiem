@@ -13,7 +13,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Congratulations"></activity>
+        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".loginMainActivity" />
+        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".Congratulations" />
         <activity android:name=".Settings" />
         <activity android:name=".Login" />
         <activity android:name=".Splash">
