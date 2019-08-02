@@ -86,8 +86,6 @@ public class Notification extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         reference=FirebaseDatabase.getInstance().getReference("Notification");
-        progressBar=findViewById(R.id.progressbarnotific);
-        load();
     }
 
     private void setupFirebaseListener() {
@@ -116,8 +114,9 @@ public class Notification extends AppCompatActivity {
             FirebaseAuth.getInstance().removeAuthStateListener(mauthStateListener);
     }
 
-    public void load()
-    {
+    @Override
+    protected void onStart() {
+        super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(mauthStateListener);
         FirebaseRecyclerAdapter<Blog, BlogViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, Notification.BlogViewHolder>
                 (Blog.class, R.layout.cardviewnotific, Notification.BlogViewHolder.class, reference) {
@@ -128,16 +127,7 @@ public class Notification extends AppCompatActivity {
                 viewHolder.setImage(getApplicationContext(), model.getImage());
             }
         };
-        progressBar.setVisibility(View.INVISIBLE);
         recyclerView.setAdapter(firebaseRecyclerAdapter);
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        progressBar.setVisibility(View.VISIBLE);
-
     }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {

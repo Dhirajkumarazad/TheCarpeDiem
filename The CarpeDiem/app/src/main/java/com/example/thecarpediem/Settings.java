@@ -49,7 +49,7 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         setupFirebaseListener();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(navListener);
     }
 

@@ -36,7 +36,7 @@ public class loginActivity extends AppCompatActivity {
             finish();
         }
 
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -47,12 +47,12 @@ public class loginActivity extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        btnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(loginActivity.this, SignupActivity.class));
-            }
-        });
+//        btnSignup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(loginActivity.this, SignupActivity.class));
+//            }
+//        });
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
