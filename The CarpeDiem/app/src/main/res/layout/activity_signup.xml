@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".Signup">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,6 +16,7 @@
 
 
         <ImageView
+            android:id="@+id/imgsignup"
             android:layout_width="@dimen/logo_w_h"
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
@@ -34,9 +35,6 @@
             android:maxLines="1"
             android:textColor="@android:color/white" />
 
-
-
-
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -49,13 +47,22 @@
             android:maxLines="1"
             android:textColor="@android:color/white" />
 
-
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:hint="Phone No.(+91xxx for India)"
+            android:imeOptions="actionUnspecified"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textColor="@android:color/white" />
         <Button
             android:id="@+id/sign_up_button"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="40dp"
             android:background="@color/colorAccent"
             android:text="@string/action_sign_in_short"
             android:textColor="@android:color/black"
@@ -83,14 +90,14 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp" />
-    </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone" />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

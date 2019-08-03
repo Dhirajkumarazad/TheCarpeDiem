@@ -47,7 +47,7 @@ public class loginMainActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(loginMainActivity.this, loginActivity.class));
+                    startActivity(new Intent(loginMainActivity.this, Login.class));
                     finish();
                 }
             }
@@ -141,7 +141,7 @@ public class loginMainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(loginMainActivity.this, "Your profile is deleted:( Create a account now!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(loginMainActivity.this, SignupActivity.class));
+                                        startActivity(new Intent(loginMainActivity.this, Signup.class));
                                         finish();
                                         progressBar.setVisibility(View.GONE);
                                     } else {
@@ -180,7 +180,7 @@ public class loginMainActivity extends AppCompatActivity {
             if (user == null) {
                 // user auth state is changed - user is null
                 // launch login activity
-                startActivity(new Intent(loginMainActivity.this, loginActivity.class));
+                startActivity(new Intent(loginMainActivity.this, Login.class));
                 finish();
             } else {
                 setDataToView(user);
@@ -204,7 +204,7 @@ public class loginMainActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(loginMainActivity.this, loginActivity.class));
+                    startActivity(new Intent(loginMainActivity.this, Login.class));
                     finish();
                 }
             }
