@@ -13,14 +13,12 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".VerifyPhone"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".Login" />
-        <activity android:name=".loginMainActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".Signup" />
         <activity android:name=".Congratulations" />
         <activity android:name=".Settings" />
-        <activity android:name=".Splash">
+        <activity android:name=".PhoneLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +32,7 @@
         <activity android:name=".Favourites" />
         <activity android:name=".Notification" />
         <activity android:name=".About" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Splash" />
 
         <receiver android:name=".InternetConnection">
             <intent-filter>

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#2EF7E4</color>
-    <color name="colorBack">#3C3B3B</color>
+    <color name="colorAccent">#AF2B2B</color>
+
+    <color name="colorBack">#000</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorTextHint">#51d8c7</color>
     <color name="color1">#4958AA</color>
-    <color name="color2">#C90548</color>
+    <color name="color2">#05C9B2</color>
     <color name="color3">#F8CC48</color>
     <color name="color4">#B51ACF</color>
     <color name="darker_grey">#3A3C3B</color>
@@ -22,10 +26,8 @@
 
     <color name="custom_divider_color">#dfdfdf</color>
     <color name="highlight_text">#17a1d7</color>
-
     <color name="send_button_color">@color/colorPrimary</color>
-
-    <color name="light_gray">#d8d6d5</color>
+    <color name="light_gray">#000</color>
     <color name="white">#ffffff</color>
     <color name="posts_counter_bg">#df3e3e3e</color>
 

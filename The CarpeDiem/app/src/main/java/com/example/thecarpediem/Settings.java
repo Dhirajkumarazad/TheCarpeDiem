@@ -1,15 +1,20 @@
 package com.example.thecarpediem;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Set;
 
 public class Settings extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mauthStateListener;
@@ -76,6 +81,68 @@ public class Settings extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(mauthStateListener);
+    }
+    public void about(View v)
+    {
+        Intent  i =new Intent(Settings.this,About.class);
+        startActivity(i);
+    }
+    public void termsandcondn(View v)
+    {
+        Intent  i =new Intent(Settings.this,About.class);
+        startActivity(i);
+    }
+    public void privacypolicy(View v)
+    {
+        Intent  i =new Intent(Settings.this,About.class);
+        startActivity(i);
+    }
+
+    public void rateapp(View v)
+    {
+        try {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "The CarpeDiem");
+            intent.putExtra(Intent.EXTRA_TEXT, "Install *The CarpeDiem* App now! https://github.com/sarthaksarm/TheCarpeDiem"); //give article's or app's link here
+            startActivity(Intent.createChooser(intent, "Share!"));
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(Settings.this,"Necessary packages, not available on your device! " +
+                    "Kindly contact us directly at \"reachtco@gmail.com\"",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public void opengmail(View v)
+    {
+        try {
+            Toast.makeText(Settings.this,"Write to us directly!",Toast.LENGTH_SHORT).show();
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto", "reachtco@gmail.com", null));
+
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Regarding The CarpeDiem Android app");
+            startActivity(Intent.createChooser(emailIntent, null));
+        }
+
+        catch (Exception e)
+        {
+            Toast.makeText(Settings.this,"Necessary packages, not available on your device! " +
+                    "Kindly contact us directly at \"reachtco@gmail.com\"",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void campusambass(View v)
+    {
+//        Intent  i =new Intent(Settings.this,About.class);
+//        startActivity(i);
+    }
+    public void signout(View v)
+    {
+        FirebaseAuth.getInstance().signOut();
+
     }
 
     @Override

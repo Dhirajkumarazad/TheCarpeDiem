@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_main);
         setupFirebaseListener();
 
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressbar);
         progressBarword=findViewById(R.id.progressbarword);
         progressBarlive=findViewById(R.id.progressbarlive);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -221,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
                 ViewPagerAdapter adapterBest=new ViewPagerAdapter(MainActivity.this,imgUrls);
                 progressBar.setVisibility(View.INVISIBLE);
                 viewPagerBest.setAdapter(adapterBest);
-
             }
 
             @Override
@@ -229,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
         models1=new ArrayList<>();
         models1.add(new model(R.drawable.inspiration,"Inspiration","Grow Inspired"));
@@ -242,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
         adapter2=new AdapterBest(models2,this);
 
         viewPagerBest =findViewById(R.id.viewPagerbest);
-
 
         sliderDotspanel=findViewById(R.id.SliderDots);
         dotscount = 5;
@@ -289,13 +286,13 @@ public class MainActivity extends AppCompatActivity {
         viewPager1=findViewById(R.id.viewPager1);
         viewPager1.setAdapter(adapter1);
 
-        viewPager1.setPadding(130,0,130,0);
+        viewPager1.setPadding(50,0,50,0);
 
         Integer[] colors_temp1={
-                getResources().getColor(R.color.color1),
-                getResources().getColor(R.color.color2),
-                getResources().getColor(R.color.color3),
-                getResources().getColor(R.color.color4),
+                getResources().getColor(R.color.Black),
+                getResources().getColor(R.color.Black),
+                getResources().getColor(R.color.Black),
+                getResources().getColor(R.color.Black),
         };
 
         colors1=colors_temp1;
@@ -527,7 +524,9 @@ public class MainActivity extends AppCompatActivity {
 
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Regarding The CarpeDiem Android app");
                     startActivity(Intent.createChooser(emailIntent, null));
-                } catch (Exception e)
+                }
+
+                catch (Exception e)
                 {
                     Toast.makeText(MainActivity.this,"Necessary packages, not available on your device! " +
                             "Kindly contact us directly at \"reachtco@gmail.com\"",Toast.LENGTH_LONG).show();
