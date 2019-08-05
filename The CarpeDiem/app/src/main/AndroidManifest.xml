@@ -13,20 +13,24 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".loginActivity"></activity>
+        <activity android:name=".IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".loginActivity" />
         <activity android:name=".loginMainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".Congratulations" />
         <activity android:name=".Settings" />
         <activity android:name=".Login" />
-        <activity android:name=".Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Splash"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".Category" />
         <activity android:name=".ScreenSlidePager" />
         <activity android:name=".WritingActivity" />
@@ -34,9 +38,7 @@
         <activity android:name=".Favourites" />
         <activity android:name=".Notification" />
         <activity android:name=".About" />
-
         <activity android:name=".MainActivity" />
-
 
         <receiver android:name=".InternetConnection">
             <intent-filter>
