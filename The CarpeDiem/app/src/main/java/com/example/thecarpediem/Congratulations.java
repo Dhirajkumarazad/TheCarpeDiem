@@ -63,4 +63,10 @@ public class Congratulations extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Congratulations.this,MainActivity.class);
+        startActivity(i);
+    }
 }

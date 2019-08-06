@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +44,7 @@ public class PoetryFragment extends Fragment {
     MyAdapter myAdapter;
     List<String> movieList=new ArrayList<>();
     String category;
+    ProgressBar progressBar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,6 +84,8 @@ public class PoetryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview=  inflater.inflate(R.layout.fragment_poetry, container, false);
+        progressBar=rootview.findViewById(R.id.progressbar);
+
         SharedPreferences preferences= rootview.getContext().getSharedPreferences("tcofile",Context.MODE_PRIVATE);
         int pos=preferences.getInt("clickedpos",0);
 
@@ -116,6 +120,7 @@ public class PoetryFragment extends Fragment {
                         movieList.add(name1);
                     }
                     myAdapter = new MyAdapter(movieList);
+                    progressBar.setVisibility(View.INVISIBLE);
                     rv.setAdapter(myAdapter);
                     rv.setTop(0);
                 }
@@ -124,6 +129,7 @@ public class PoetryFragment extends Fragment {
                     name1="No record found currently! Try again later.";
                     movieList.add(name1);
                     myAdapter=new MyAdapter(movieList);
+                    progressBar.setVisibility(View.INVISIBLE);
                     rv.setAdapter(myAdapter);
                 }
                 new Handler().post(new Runnable() {

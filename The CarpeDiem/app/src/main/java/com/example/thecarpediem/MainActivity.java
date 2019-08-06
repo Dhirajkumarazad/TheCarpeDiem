@@ -28,9 +28,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private int dotscount;
     private ImageView[] dots;
     InternetConnection ic;
+    ProgressBar progressBar;
+    ProgressBar progressBarlive;
+    ProgressBar progressBarword;
+
     private FirebaseAuth.AuthStateListener mauthStateListener;
     private String[] imgUrls={
             R.drawable.loadingimg+"",
@@ -79,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
+
         setContentView(R.layout.activity_main);
         setupFirebaseListener();
 
@@ -87,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+        progressBar=findViewById(R.id.progressbar);
+        progressBarword=findViewById(R.id.progressbarword);
+        progressBarlive=findViewById(R.id.progressbarlive);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -151,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.exit:
                         AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("Are you Sure? Want to exit?");
-                        builder.setCancelable(true);
+                        builder.setMessage("Are you sure want to exit?");
+                        builder.setCancelable(false);
 
                         builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                             @Override
@@ -209,8 +219,8 @@ public class MainActivity extends AppCompatActivity {
                     i=i+1;
                 }
                 ViewPagerAdapter adapterBest=new ViewPagerAdapter(MainActivity.this,imgUrls);
+                progressBar.setVisibility(View.INVISIBLE);
                 viewPagerBest.setAdapter(adapterBest);
-
             }
 
             @Override
@@ -218,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
         models1=new ArrayList<>();
         models1.add(new model(R.drawable.inspiration,"Inspiration","Grow Inspired"));
@@ -231,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
         adapter2=new AdapterBest(models2,this);
 
         viewPagerBest =findViewById(R.id.viewPagerbest);
-
 
         sliderDotspanel=findViewById(R.id.SliderDots);
         dotscount = 5;
@@ -278,13 +286,13 @@ public class MainActivity extends AppCompatActivity {
         viewPager1=findViewById(R.id.viewPager1);
         viewPager1.setAdapter(adapter1);
 
-        viewPager1.setPadding(130,0,130,0);
+        viewPager1.setPadding(50,0,50,0);
 
         Integer[] colors_temp1={
-                getResources().getColor(R.color.color1),
-                getResources().getColor(R.color.color2),
-                getResources().getColor(R.color.color3),
-                getResources().getColor(R.color.color4),
+                getResources().getColor(R.color.Black),
+                getResources().getColor(R.color.Black),
+                getResources().getColor(R.color.Black),
+                getResources().getColor(R.color.Black),
         };
 
         colors1=colors_temp1;
@@ -323,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Picasso.get().load(dataSnapshot.getValue().toString()).placeholder(R.drawable.loadingimg).into(imglive);
+                progressBarlive.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -337,6 +346,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Picasso.get().load(dataSnapshot.getValue().toString()).placeholder(R.drawable.loadingimg).into(imgword);
+                progressBarword.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -355,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
         {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
             builder1.setMessage("NO Internet! Check Internet connection and try again.");
-            builder1.setCancelable(true);
+            builder1.setCancelable(false);
 
             builder1.setPositiveButton(
                     "Reload",
@@ -418,8 +428,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-            builder1.setMessage("Are you sure, Want to Exit?");
-            builder1.setCancelable(true);
+            builder1.setMessage("Are you sure want to Exit?");
+            builder1.setCancelable(false);
 
             builder1.setPositiveButton(
                     "Sure",
@@ -514,7 +524,9 @@ public class MainActivity extends AppCompatActivity {
 
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Regarding The CarpeDiem Android app");
                     startActivity(Intent.createChooser(emailIntent, null));
-                } catch (Exception e)
+                }
+
+                catch (Exception e)
                 {
                     Toast.makeText(MainActivity.this,"Necessary packages, not available on your device! " +
                             "Kindly contact us directly at \"reachtco@gmail.com\"",Toast.LENGTH_LONG).show();
@@ -523,8 +535,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.exit:
                 AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are you Sure? Want to exit?");
-                builder.setCancelable(true);
+                builder.setMessage("Are you sure want to exit?");
+                builder.setCancelable(false);
 
                 builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
                     @Override

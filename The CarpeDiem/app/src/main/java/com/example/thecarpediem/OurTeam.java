@@ -2,6 +2,7 @@ package com.example.thecarpediem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,7 +16,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -38,6 +41,8 @@ public class OurTeam extends AppCompatActivity {
     CountDownTimer countDownTimer;
     int timeValue = 5;
     private FirebaseAuth.AuthStateListener mauthStateListener;
+    ProgressBar progressBar;
+    TextView loadtxt;
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -78,40 +83,20 @@ public class OurTeam extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(navListener);
-
-//        kenBurnsView=(KenBurnsView)findViewById(R.id.image);
-//        AccelerateDecelerateInterpolator ACCELERATE_DECELERATE = new AccelerateDecelerateInterpolator();
-//        RandomTransitionGenerator generator = new RandomTransitionGenerator(10000, ACCELERATE_DECELERATE);
-//        kenBurnsView.setTransitionGenerator(generator);
-//
-//        kenBurnsView.setTransitionListener(onTransittionListener());
-//
-//        kenBurnsView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(moving){
-//                    kenBurnsView.pause();
-//                    moving=false;
-//                }
-//                else{
-//                    kenBurnsView.resume();;
-//                    moving=true;
-//                }
-//            }
-//        });
+        progressBar=findViewById(R.id.progressbar);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Our Team");
         mDatabase.keepSynced(true);
 
         nettextdevelop=findViewById(R.id.nettxtdevelop);
 
-        recyclerView =
-                (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        load();
     }
     private KenBurnsView.TransitionListener onTransittionListener() {
         return new KenBurnsView.TransitionListener() {
@@ -154,10 +139,11 @@ public class OurTeam extends AppCompatActivity {
         if(mauthStateListener!=null)
             FirebaseAuth.getInstance().removeAuthStateListener(mauthStateListener);
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
+
+    public void load()
+    {
         FirebaseAuth.getInstance().addAuthStateListener(mauthStateListener);
+
         FirebaseRecyclerAdapter<Blog, BlogViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, OurTeam.BlogViewHolder>
                 (Blog.class, R.layout.cardview, OurTeam.BlogViewHolder.class, mDatabase) {
             @Override
@@ -165,10 +151,14 @@ public class OurTeam extends AppCompatActivity {
                 viewHolder.setTitle(model.getTitle());
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
-
             }
+
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
@@ -195,4 +185,6 @@ public class OurTeam extends AppCompatActivity {
             Picasso.get().load(image).placeholder(R.drawable.logo).into(post_Image);
         }
     }
+
+
 }

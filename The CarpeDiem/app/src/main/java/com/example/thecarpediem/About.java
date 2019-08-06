@@ -120,7 +120,7 @@ public class About extends AppCompatActivity {
                     //We will navigate him to the time up activity using below method
                     final AlertDialog.Builder builder=new AlertDialog.Builder(About.this);
                     builder.setMessage("Couldn't load. Please check your internet connectivity and try again!");
-                    builder.setCancelable(true);
+                    builder.setCancelable(false);
 
                     builder.setNegativeButton("Reload", new DialogInterface.OnClickListener() {
                         @Override
@@ -150,7 +150,7 @@ public class About extends AppCompatActivity {
 
             final AlertDialog.Builder builder=new AlertDialog.Builder(About.this);
             builder.setMessage("Couldn't load. Please check your internet connectivity and try again!");
-            builder.setCancelable(true);
+            builder.setCancelable(false);
 
             builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                 @Override

@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class Notification extends AppCompatActivity {
     DatabaseReference reference;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
+    ProgressBar progressBar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -111,6 +113,7 @@ public class Notification extends AppCompatActivity {
         if(mauthStateListener!=null)
             FirebaseAuth.getInstance().removeAuthStateListener(mauthStateListener);
     }
+
     @Override
     protected void onStart() {
         super.onStart();

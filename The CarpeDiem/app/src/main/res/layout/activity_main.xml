@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBack"
+    android:background="#000"
     android:id="@+id/drawer_layout"
     tools:openDrawer="start"
     tools:context=".MainActivity">
@@ -47,6 +47,7 @@
 
                 <RelativeLayout
                     android:orientation="vertical"
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     >
@@ -54,13 +55,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="BEST OF THE DAY"
+                        android:text="Best of the Day "
                         android:textColor="#fff"
                         android:id ="@+id/besttxt"
                         android:typeface="serif"
                         android:textSize="18dp"
                         />
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/rl"
                         android:layout_below="@+id/besttxt"
                         android:layout_width="match_parent"
@@ -68,12 +69,19 @@
                         android:layout_height="300dp"
                         >
 
+                        <ProgressBar
+                            android:id="@+id/progressbar"
+                            android:layout_width="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_height="wrap_content"
+                            />
                         <android.support.v4.view.ViewPager
                             android:id="@+id/viewPagerbest"
                             android:overScrollMode="always"
                             android:clipToPadding="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                         </android.support.v4.view.ViewPager>
 
                         <LinearLayout
@@ -84,16 +92,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CHOOSE CATEGORY "
-                        android:layout_marginStart="10dp"
+                        android:text="Choose Category "
                         android:textColor="#fff"
                         android:layout_below="@+id/rl"
                         android:layout_marginTop="40dp"
+                        android:layout_centerHorizontal="true"
                         android:id="@+id/categoriestxt"
                         android:typeface="serif"
                         android:textSize="18dp"
@@ -127,7 +135,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="WORD OF THE DAY "
+                        android:text="Word of the Day "
                         android:layout_centerHorizontal="true"
                         android:textColor="#fff"
                         android:textStyle="italic"
@@ -158,6 +166,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
+                                <ProgressBar
+                                    android:id="@+id/progressbarword"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    />
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -185,6 +199,16 @@
                 android:layout_marginEnd="10dp"
                 app:cardElevation="50dp"
                 >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressbarlive"
+                    android:layout_centerInParent="true"
+                    />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -193,7 +217,7 @@
                     android:scaleType="fitXY"
                     android:id="@+id/liveimg"
                     />
-
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
                 </RelativeLayout>
                 </RelativeLayout>
@@ -202,11 +226,13 @@
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="#000"
+            app:itemTextColor="#fff"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
             app:menu="@menu/menuhome"/>
     </RelativeLayout>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -214,5 +240,4 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
-
 </android.support.v4.widget.DrawerLayout>
